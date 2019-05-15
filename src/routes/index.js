@@ -1,5 +1,5 @@
-import agents from "./agents";
+import agents from './agents'
 
 export default {
-  agents
-};
+    agents,
+}
