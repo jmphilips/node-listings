@@ -1,31 +1,31 @@
-import { Router } from 'express'
+import { Router } from "express";
 
-const router = Router()
+const router = Router();
 
-
+console.log("ayo");
 let agents = {
   1: {
-    id: '1',
-    firstName: 'Joshua',
-    lastName: 'Philips',
-    phoneNumber: '6154380930',
-    email: 'bendy@slendy.com'
+    id: "1",
+    firstName: "Joshua",
+    lastName: "Philips",
+    phoneNumber: "6154380930",
+    email: "bendy@slendy.com"
   },
   2: {
-    id: '2',
-    firstName: 'Andrew',
-    lastName: 'kang',
-    phoneNumber: '61543333',
-    email: 'lolol'
+    id: "2",
+    firstName: "Andrew",
+    lastName: "kang",
+    phoneNumber: "61543333",
+    email: "lolol"
   }
-}
+};
 
-router.get('/', (req, res) => {
-  res.send(Object.values(agents))
-})
+router.get("/", (req, res) => {
+  res.send(Object.values(agents));
+});
 
-router.get('/:id', (req, res) => {
-  res.send(agents[req.params.id])
-})
+router.get("/:id", (req, res) => {
+  res.send(agents[req.params.id]);
+});
 
 export default router;
