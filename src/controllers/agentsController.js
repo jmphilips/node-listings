@@ -3,14 +3,14 @@ import Agent from '../models/agent'
 const AgentsController = {
   index(req, res) {
     Agent.find({}, (err, agents) => {
-      res.send(agents)
+      res.status(200).send(agents)
     })
   },
 
   show(req, res) {
     const agentId = req.params.id
     Agent.findById(agentId, (err, agent) => {
-      res.send(agent)
+      res.status(200).send(agent)
     })
   },
 
@@ -22,7 +22,14 @@ const AgentsController = {
       email: agentParams.email,
       phoneNumber: agentParams.phoneNumber
     }, (err, agent) => {
-      res.send(agent)
+      res.status(201).send(agent)
+    })
+  },
+
+  delete(req, res) {
+    const agentId = req.params.id
+    Agent.deleteOne({_id: agentId}, (err) => {
+      res.status(204).send()
     })
   }
 }

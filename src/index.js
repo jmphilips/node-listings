@@ -10,6 +10,7 @@ const app = express()
 app.use(bodyParser())
 app.use(cors())
 app.use('/agents', routes.agents)
+app.use('/properties', routes.properties)
 
 app.listen(process.env.PORT, () => {
     connect(process.env.DB_HOST)
