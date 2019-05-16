@@ -32,6 +32,13 @@ const PropertiesController = {
     }, (err, property) => {
       res.status(201).send(property)
     })
+  },
+
+  delete(req, res) {
+    const propertyId = req.params.id
+    Property.deleteOne({_id: propertyId}, (err) => {
+      res.status(204).send()
+    })
   }
 }
 
