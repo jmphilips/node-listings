@@ -9,6 +9,13 @@ const PropertiesController = {
     })
   },
 
+  show(req, res) {
+    const propertyId = req.params.id
+    Property.findById(propertyId, (err, property) => {
+      res.status(200).send(property)
+    })
+  },
+
   create(req, res) {
     const propertyParams = req.body
     Property.create({
