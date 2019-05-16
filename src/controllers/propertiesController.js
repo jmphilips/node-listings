@@ -1,4 +1,3 @@
-import Agent from '../models/property'
 import Property from '../models/property';
 import { create } from 'domain';
 
