@@ -13,6 +13,7 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use('/agents', routes.agents)
 app.use('/properties', routes.properties)
+app.use('/assignments', routes.assignments)
 
 app.listen(process.env.PORT, () => {
     connect(process.env.DB_HOST)

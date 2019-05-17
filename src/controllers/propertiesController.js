@@ -1,5 +1,4 @@
 import Property from '../models/property';
-import { create } from 'domain';
 
 const PropertiesController = {
   index(req, res) {
@@ -38,7 +37,7 @@ const PropertiesController = {
     Property.deleteOne({_id: propertyId}, (err) => {
       res.status(204).send()
     })
-  }
+  },
 }
 
 export default PropertiesController

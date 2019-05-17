@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import Agent from '../models/agent'
 import AgentsController from '../controllers/agentsController'
 
 const router = Router()

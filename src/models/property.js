@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { AgentSchema } from './agent'
 
 const PropertySchema = Schema({
   propertyType: { type: String, required: true, max: 100 },
@@ -11,6 +12,7 @@ const PropertySchema = Schema({
   squareFeet: { type: String, required: true, max: 100 },
   totalRooms: { type: String, required: true, max: 100 },
   bathroomCount: { type: String, required: true, max: 100 },
+  listingAgents: { type: [AgentSchema] },
 })
 
 const Property = model('Property', PropertySchema)
