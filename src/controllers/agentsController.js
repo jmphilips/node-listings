@@ -31,24 +31,10 @@ const AgentsController = {
     Agent.deleteOne({_id: agentId}, (err) => {
       res.status(204).send()
     })
-  }, 
+  },
 
   seed(req, res) {
-
-var parser = parse({delimiter: ','}, function (err, data) {
-  async.eachSeries(data, (line, callback) => {
-    data.forEach(row => {
-      Agent.create({
-        firstName: row[0],
-        lastName: row[1],
-        email: row[2],
-        phoneNumber: row[3],
-      }, (err, agent) => {
-      })
-    })
-  })
-});
-fs.createReadStream(inputFile).pipe(parser);
+    
   }
 }
 
