@@ -1,42 +1,44 @@
 import Property from '../models/property';
+import AppController from './applicationController';
+import BaseController from './baseController'
+
 
 const PropertiesController = {
-  index(req, res) {
-    Property.find({}, (err, properties) => {
-      res.status(200).send(properties)
-    })
+  index(req, res, next) {
+    BaseController.index(Property, res, next)
   },
 
-  show(req, res) {
-    const propertyId = req.params.id
-    Property.findById(propertyId, (err, property) => {
-      res.status(200).send(property)
-    })
+  async show(req, res, next) {
+    const propertyId = AppController.idParams(req)
+    try {
+      const property = await Property.find(propertyId)
+      AppController.statusOk(property, res)
+    } catch(error) {
+      res.status(404).send(error)
+      next()
+    }
   },
 
-  create(req, res) {
-    const propertyParams = req.body
-    Property.create({
-      propertyType: propertyParams.propertyType,
-      address: propertyParams.address,
-      unitNumber: propertyParams.unitNumber,
-      price: propertyParams.price,
-      status: propertyParams.status,
-      description: propertyParams.description,
-      bedroomCount: propertyParams.bedroomCount,
-      squareFeet: propertyParams.squareFeet,
-      totalRooms: propertyParams.totalRooms,
-      bathroomCount: propertyParams.bathroomCount
-    }, (err, property) => {
-      res.status(201).send(property)
-    })
+  async create(req, res, next) {
+    const propertyParams = AppController.bodyParms(req)
+    try {
+      property = await Property.create(propertyParams)
+      AppController.statusCreated(property, res)
+    } catch(error) {
+      res.status(500).send(error)
+      next()
+    }
   },
 
-  delete(req, res) {
-    const propertyId = req.params.id
-    Property.deleteOne({_id: propertyId}, (err) => {
-      res.status(204).send()
-    })
+  async delete(req, res, next) {
+    const propertyId = AppController.idParams(req)
+    try {
+      Property.delete(propertyId)
+      AppController.statusNoContent(res)
+    } catch(error) {
+      res.status(404).send(error)
+      next()
+    }
   },
 }
 
