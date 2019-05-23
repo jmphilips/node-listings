@@ -1,17 +1,25 @@
 import Agent from '../models/agent'
 
 const AgentsController = {
-  index(req, res) {
-    Agent.find({}, (err, agents) => {
+  async index(req, res) {
+    try {
+      const agents = await Agent.find({})
       res.status(200).send(agents)
-    })
+    } catch(error) {
+      res.status(500).send(error)
+      next(error)
+    }
   },
 
-  show(req, res) {
+  async show(req, res, next) {
     const agentId = req.params.id
-    Agent.findById(agentId, (err, agent) => {
+    try {
+      const agent = await Agent.findById(agentId)
       res.status(200).send(agent)
-    })
+    } catch(error) {
+      res.status(404).send(error)
+      next(error)
+    }
   },
 
   create(req, res) {
