@@ -22,28 +22,33 @@ const AgentsController = {
     }
   },
 
-  create(req, res) {
+  async create(req, res, next) {
     const agentParams = req.body
-    Agent.create({
-      firstName: agentParams.firstName,
-      lastName: agentParams.lastName,
-      email: agentParams.email,
-      phoneNumber: agentParams.phoneNumber
-    }, (err, agent) => {
+    try {
+      const agent = await Agent.create({
+        firstName: agentParams.firstName,
+        lastName: agentParams.lastName,
+        email: agentParams.email,
+        phoneNumber: agentParams.phoneNumber
+      })
       res.status(201).send(agent)
-    })
+    } catch(error) {
+      res.status(400).send(error)
+      next(error)
+    }
   },
 
-  delete(req, res) {
+  async delete(req, res, next) {
     const agentId = req.params.id
-    Agent.deleteOne({_id: agentId}, (err) => {
+    try {
+      await Agent.deleteOne({_id: agentId})
       res.status(204).send()
-    })
+    } catch(error) {
+      res.status(404).send(error)
+      next()
+    }
   },
 
-  seed(req, res) {
-    
-  }
 }
 
 export default AgentsController
