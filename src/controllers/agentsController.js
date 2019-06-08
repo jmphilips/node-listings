@@ -21,17 +21,6 @@ const AgentsController = {
         const agentId = AppController.idParams(req)
         BaseController.delete(Agent, agentId, res, next)
     },
-
-    // async delete(req, res, next) {
-    //   const agentId = AppController.idParams(req)
-    //   try {
-    //     await Agent.delete(agentId)
-    //     AppController.statusNoContent(res)
-    //   } catch(error) {
-    //     res.status(404).send(error)
-    //     next(error)
-    //   }
-    // },
 }
 
 export default AgentsController
