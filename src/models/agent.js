@@ -1,4 +1,5 @@
 import AgentModel from '../db/models/agentModel'
+import ModelLogger from '../log/modelLogger'
 
 const Agent = {
     createFromRequest(request) {
@@ -15,7 +16,9 @@ const Agent = {
     },
 
     find(id) {
-        return AgentModel.findById(id)
+        const agent = AgentModel.findById(id)
+        ModelLogger.find(agent)
+        return agent
     },
 
     delete(id) {

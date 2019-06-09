@@ -3,7 +3,7 @@ import AppController from './applicationController'
 import BaseController from './baseController'
 
 const PropertiesController = {
-    index(req, res, next) {
+    async index(req, res, next) {
         BaseController.index(Property, res, next)
     },
 
